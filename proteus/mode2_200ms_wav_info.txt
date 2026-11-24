@@ -1,0 +1,1 @@
+AUDIO generator: amplitude (dinh) = 0.139410 V ; DC noi tiep = 3.001370 V

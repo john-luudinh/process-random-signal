@@ -1,0 +1,19 @@
+* EE6423 - chuoi do ACS712 (R_F, C_F, dem) + Sallen-Key - cung mach voi Proteus
+.model fsrc filesource (file="mode2_500ms_uraw.txt" amploffset=[0] amplscale=[1] timeoffset=0 timescale=1 timerelative=false amplstep=false)
+a1 %v([in]) fsrc
+RF in filter 1700
+CF filter 0 1.000e-07
+* U1: dem (op-amp ly tuong, follower)
+EU1 buf 0 filter buf 1e6
+R1 buf a 18.7k
+R2 a b 18.7k
+C1 a vout 20n
+C2 b 0 10n
+* U2: Sallen-Key unity gain
+EU2 vout 0 b vout 1e6
+.tran 10u 0.5 0 10u
+.control
+run
+wrdata spice_mode2_500ms_out.txt v(vout) v(filter)
+.endc
+.end

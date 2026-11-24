@@ -1,0 +1,16 @@
+* EE6423 - dap ung tan so chuoi do
+V1 in 0 dc 2.5 ac 1
+RF in filter 1700
+CF filter 0 100n
+EU1 buf 0 filter buf 1e6
+R1 buf a 18.7k
+R2 a b 18.7k
+C1 a vout 20n
+C2 b 0 10n
+EU2 vout 0 b vout 1e6
+.ac dec 100 10 100k
+.control
+run
+wrdata spice_ac_out.txt vdb(vout) vp(vout)
+.endc
+.end

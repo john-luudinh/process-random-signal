@@ -48,14 +48,18 @@ ee6423/
 ├── m1_expected_psd.py      # Tính PSD lý thuyết (M1) bằng công thức giải tích để đối chiếu với thực nghiệm
 ├── m2_analysis_calib.py    # Pipeline phân tích hoàn chỉnh D2 -> D7 (chạy thống kê, ACF, Welch, hiệu chuẩn LS/WLS, xuất hình)
 ├── m2_quicklook.py         # Script chạy nhanh kiểm tra hiệu chuẩn tĩnh, Welch PSD, baseline RMSE và AR(4)
+├── m3_params_from_m2.py    # Trích xuất & nâng cấp tham số M2 -> M3 (AR(3) Ljung-Box, quy đổi phi 100->2500 Hz)
+├── m3_kalman_eval.py       # Pipeline đánh giá Kalman M3 (Mode 2 & 3), NIS/Ljung-Box, độ nhạy Q/R, xuất 6 hình
 ├── proteus_io.py           # Xuất tín hiệu 100 kHz sang Proteus (FILE/WAV), sinh netlist ngspice và so sánh sai lệch
 ├── filters/
-│   └── kalman_fixed.py     # Bộ lọc Kalman 6 trạng thái mẫu (tần số gợn cố định — chưa tinh chỉnh)
+│   ├── kalman_fixed.py     # Bộ lọc Kalman 6 trạng thái mẫu (tần số gợn cố định — Cách 2 đối chiếu)
+│   └── kalman_m3.py        # Bộ lọc Kalman 5 trạng thái mở rộng AR(3) + bù nhiệt M2 + Notch nhân quả (M3)
 ├── data/                   # Dữ liệu mô phỏng đã lưu (mode1.npz, mode2.npz, mode3.npz)
-├── figures/                # Toàn bộ biểu đồ đầu ra (*.png) từ quicklook, m1_expected_psd và m2_analysis_calib
+├── figures/                # Toàn bộ biểu đồ đầu ra (*.png) từ M1, M2 và M3
 ├── proteus/                # File netlist (.cir), dữ liệu xuất (.txt, .wav, .npz) cho mô phỏng mạch Proteus
 └── docs/
     ├── report_m1.md        # Báo cáo chi tiết kết quả M1-M2 kèm giải thích vật lý & bảng số liệu
+    ├── report_m3.md        # Báo cáo chi tiết Milestone 3 (Kalman 5 trạng thái, NIS, độ nhạy, STFT Mode 3)
     ├── m2_analysis_calib.md# Ghi chú chi tiết quá trình phân tích & hiệu chuẩn M2
     └── report_m1_m2.tex    # Bản LaTeX của báo cáo
 ```
@@ -93,6 +97,11 @@ pip install numpy scipy matplotlib
    python m2_quicklook.py
    ```
    *Kết quả:* Xuất `figures/fig_m2_psd_acf.png` và `figures/fig_m3_timeseries.png`.
+5. **Chạy đánh giá Bộ lọc Kalman Milestone 3 (M3):**
+   ```powershell
+   python m3_kalman_eval.py
+   ```
+   *Kết quả:* In bảng kiểm định AR(3) Ljung–Box, tính khả quan sát ($\text{rank}(\mathcal{O}) = 5$), bảng đối chiếu RMSE/Bias/t90 trên Chế độ 2 & Chế độ 3, kiểm định NIS và xuất 6 hình `figures/fig_m3_1_*.png` đến `figures/fig_m3_6_*.png`.
 
 ### Giao tiếp & Đối chiếu mạch với Proteus / ngspice
 ```powershell
@@ -142,5 +151,6 @@ trong đó $(i_{\text{avg}}, \Delta i)$ mô hình hóa dòng trung bình biến 
 ---
 
 ## 5. Tài liệu tham khảo nội bộ
-- Xem báo cáo phân tích đầy đủ số liệu và giải thích vật lý tại: [docs/report_m1.md](docs/report_m1.md)
+- Xem báo cáo phân tích đầy đủ số liệu và giải thích vật lý M1–M2 tại: [docs/report_m1.md](docs/report_m1.md)
+- Xem báo cáo thiết kế & đánh giá Bộ lọc Kalman M3 tại: [docs/report_m3.md](docs/report_m3.md)
 - Xem ghi chú chi tiết các hàm phân tích M2 tại: [docs/m2_analysis_calib.md](docs/m2_analysis_calib.md)

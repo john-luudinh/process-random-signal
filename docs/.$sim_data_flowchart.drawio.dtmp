@@ -1,0 +1,61 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/25.0.2 Chrome/128.0.6613.186 Electron/32.2.5 Safari/537.36" version="25.0.2">
+  <diagram id="ee6423-sim-concept" name="Y Tuong Sinh Du Lieu">
+    <mxGraphModel dx="1200" dy="598" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1120" pageHeight="280" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="b1" value="&lt;b&gt;Động cơ DC&lt;/b&gt;&lt;br&gt;&amp;amp; Tải ngẫu nhiên" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#2563eb;strokeWidth=1.5;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="30" y="70" width="145" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" value="&lt;b&gt;Gợn cổ góp&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbeafe;strokeColor=#2563eb;strokeWidth=1.5;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="225" y="70" width="120" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" value="&lt;b&gt;Cảm biến ACS712&lt;/b&gt;&lt;br&gt;+ Nhiễu &amp;amp; Trôi nhiệt" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffedd5;strokeColor=#ea580c;strokeWidth=1.5;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="395" y="70" width="155" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="b4" value="&lt;b&gt;Lọc tương tự&lt;/b&gt;&lt;br&gt;(Chống chồng phổ)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffedd5;strokeColor=#ea580c;strokeWidth=1.5;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="600" y="70" width="140" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="b5" value="&lt;b&gt;Lấy mẫu &amp;amp; ADC&lt;/b&gt;&lt;br&gt;(12-bit)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dcfce7;strokeColor=#16a34a;strokeWidth=1.5;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="790" y="70" width="130" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="b6" value="&lt;b&gt;Dữ liệu đo&lt;/b&gt;&lt;br&gt;y[n], x[n]" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#bbf7d0;strokeColor=#15803d;strokeWidth=2;fontSize=12;" parent="1" vertex="1">
+          <mxGeometry x="970" y="70" width="115" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="i_avg" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#334155;strokeWidth=1.6;fontSize=11;" parent="1" source="b1" target="b2" edge="1">
+          <mxGeometry y="12" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e2" value="i_a" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#334155;strokeWidth=1.6;fontSize=11;" parent="1" source="b2" target="b3" edge="1">
+          <mxGeometry y="12" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e3" value="u_raw" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#334155;strokeWidth=1.6;fontSize=11;" parent="1" source="b3" target="b4" edge="1">
+          <mxGeometry y="12" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" value="u_an" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#334155;strokeWidth=1.6;fontSize=11;" parent="1" source="b4" target="b5" edge="1">
+          <mxGeometry y="12" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" value="y[n]" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#334155;strokeWidth=1.6;fontSize=11;" parent="1" source="b5" target="b6" edge="1">
+          <mxGeometry y="12" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_gt" value="Ground truth: x[n] = i_avg (không gợn, chưa lọc)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#dc2626;strokeWidth=1.6;dashed=1;fontSize=11;fontColor=#b91c1c;labelBackgroundColor=#ffffff;" parent="1" source="b1" target="b6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="102" y="195" />
+              <mxPoint x="1027" y="195" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
